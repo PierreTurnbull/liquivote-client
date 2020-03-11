@@ -17,6 +17,7 @@ class AppLayout extends StatelessWidget {
           ),
         ],
       ),
+      backgroundColor: Color.fromARGB(255, 240, 240, 255),
       body: Text('body here')
     );
   }

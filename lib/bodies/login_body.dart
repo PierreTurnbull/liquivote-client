@@ -16,47 +16,79 @@ class _LoginBodyState extends State<LoginBody> {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> _loginFormKey = GlobalKey();
-    return Form(
-      key: _loginFormKey,
-      child: Column(
-        children: [
-          _buildUsernameField(),
-          _buildPasswordField(),
-          _buildSubmitButton()
-        ]
-      )
+    return ListView(
+      children: [
+        Container(
+          padding: EdgeInsets.all(50),
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                child: Text(
+                  'Log in',
+                  style: TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              Container(
+                child: Form(
+                  key: _loginFormKey,
+                  child: Column(
+                    children: [
+                      _buildUsernameField(),
+                      _buildPasswordField(),
+                      _buildSubmitButton()
+                    ]
+                  )
+                )
+              )
+            ]
+          )
+        )
+      ]
     );
   }
 
   Widget _buildUsernameField() {
-    return TextFormField(
-      decoration: InputDecoration(
-        hintText: 'example: joe'
-      ),
-      onChanged: (value) { _loginData['username'] = value; },
+    return Container(
+      padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+      child: TextFormField(
+        decoration: InputDecoration(
+          hintText: 'example: joe'
+        ),
+        onChanged: (value) { _loginData['username'] = value; },
+      )
     );
   }
 
   Widget _buildPasswordField() {
-    return TextFormField(
-      decoration: InputDecoration(
-        hintText: 'example: pass'
-      ),
-      keyboardType: TextInputType.text,
-      obscureText: true,
-      onChanged: (value) { _loginData['password'] = value; },
+    return Container(
+      padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+      child: TextFormField(
+        decoration: InputDecoration(
+          hintText: 'example: pass'
+        ),
+        keyboardType: TextInputType.text,
+        obscureText: true,
+        onChanged: (value) { _loginData['password'] = value; },
+      )
     );
   }
 
   Widget _buildSubmitButton() {
-    return FlatButton(
-      child: Text('Log in'),
-      color: Colors.blue,
-      onPressed: () {
-        Provider.of<AuthProvider>(context, listen: false).login(
-          _loginData
-        );
-      },
+    return Container(
+      padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+      child: FlatButton(
+        child: Text('Log in'),
+        color: Colors.blue,
+        onPressed: () {
+          Provider.of<AuthProvider>(context, listen: false).login(
+            _loginData
+          );
+        },
+      )
     );
   }
 }

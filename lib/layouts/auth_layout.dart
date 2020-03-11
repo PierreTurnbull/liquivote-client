@@ -6,8 +6,9 @@ class AuthLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('auth layout')
+        title: Text('Authentication')
       ),
+      backgroundColor: Color.fromARGB(255, 240, 240, 255),
       body: LoginScreen()
     );
   }
