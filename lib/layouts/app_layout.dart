@@ -7,7 +7,7 @@ class AppLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('home layout'),
+        title: Text('LiquiVote'),
         actions: [
           IconButton(
             icon: Icon(Icons.exit_to_app),

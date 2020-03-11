@@ -37,13 +37,31 @@ class _LoginBodyState extends State<LoginBody> {
                   key: _loginFormKey,
                   child: Column(
                     children: [
+                    // :) :) :)
+                    Container(
+                      margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                      height: 25,
+                      child: FlatButton(
+                        child: Text('shortcut for the lazy :)', style: TextStyle(color: Color.fromARGB(255, 90, 150, 185)),),
+                        color: Color.fromARGB(255, 170, 190, 255),
+                        onPressed: () {
+                          Provider.of<AuthProvider>(context, listen: false).login(
+                            {
+                              'username': 'joe',
+                              'password': 'pass'
+                            }
+                          );
+                        }
+                      )
+                    ),
+                    // :) :) :)
                       _buildUsernameField(),
                       _buildPasswordField(),
                       _buildSubmitButton()
                     ]
                   )
                 )
-              )
+              ),
             ]
           )
         )
