@@ -19,6 +19,8 @@ class DataProvider with ChangeNotifier {
     if (response['statusCode'] == 401) {
       Provider.of<AuthProvider>(context).logout();
     }
-    _posts = response['body'];
+    _posts = response['body'].map<Post>((item) {
+      return Post.fromObject(item);
+    }).toList();
   }
 }

@@ -15,13 +15,13 @@ class Post {
     );
   }
 
-  factory Post.fromJson(Map<String, dynamic> json) {
-    if (json == null) { return null; }
+  factory Post.fromObject(Map<String, dynamic> object) {
+    if (object == null) { return null; }
     return Post(
-      id: json['id'],
-      title: json['title'],
-      content: json['content'],
-      userId: json['userId'],
+      id: object['id'],
+      title: object['title'],
+      content: object['content'],
+      userId: object['userId'],
     );
   }
 
