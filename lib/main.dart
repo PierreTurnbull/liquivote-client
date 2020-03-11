@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:liquivote/layouts/auth_layout.dart';
-import 'package:liquivote/layouts/home_layout.dart';
+import 'package:liquivote/layouts/app_layout.dart';
 import 'package:liquivote/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
           ),
           home: authProvider.isAuthenticated
-            ? HomeLayout()
+            ? AppLayout()
             : AuthLayout()
         )
       )

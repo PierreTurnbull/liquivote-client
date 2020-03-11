@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:liquivote/providers/auth_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:liquivote/screens/login_screen.dart';
 
 class AuthLayout extends StatelessWidget {
   @override
@@ -9,12 +8,7 @@ class AuthLayout extends StatelessWidget {
       appBar: AppBar(
         title: Text('auth layout')
       ),
-      body: FlatButton(
-        child: Text('Log in'),
-        onPressed: () {
-          Provider.of<AuthProvider>(context, listen: false).login();
-        },
-      )
+      body: LoginScreen()
     );
   }
 }
