@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:liquivote/models/post_model.dart';
 import 'package:liquivote/providers/auth_provider.dart';
 import 'package:liquivote/tools/network.dart';
 import 'package:provider/provider.dart';
@@ -7,6 +8,10 @@ class DataProvider with ChangeNotifier {
   final context;
   final Network _network = Network();
 
+  List<Post> _posts;
+
+  List<Post> get posts => [..._posts];
+
   DataProvider(this.context);
 
   void fetchPosts() async {
@@ -14,6 +19,6 @@ class DataProvider with ChangeNotifier {
     if (response['statusCode'] == 401) {
       Provider.of<AuthProvider>(context).logout();
     }
-    print(response['body']);
+    _posts = response['body'];
   }
 }
