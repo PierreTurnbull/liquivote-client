@@ -9,6 +9,7 @@ class PostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       padding: EdgeInsets.all(15),
       margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
       decoration: BoxDecoration(

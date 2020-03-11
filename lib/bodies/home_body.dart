@@ -6,9 +6,9 @@ import 'package:provider/provider.dart';
 class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SingleChildScrollView(
       padding: EdgeInsets.all(20),
-      child: ListView(
+      child: Column(
         children: Provider.of<DataProvider>(context).posts.map((post) {
           return PostCard(post);
         }).toList(),
