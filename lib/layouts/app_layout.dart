@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:liquivote/providers/auth_provider.dart';
+import 'package:liquivote/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
 class AppLayout extends StatelessWidget {
@@ -18,7 +19,7 @@ class AppLayout extends StatelessWidget {
         ],
       ),
       backgroundColor: Color.fromARGB(255, 240, 240, 255),
-      body: Text('body here')
+      body: HomeScreen()
     );
   }
 }
