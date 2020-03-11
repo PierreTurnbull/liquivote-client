@@ -20,31 +20,43 @@ class _LoginBodyState extends State<LoginBody> {
       key: _loginFormKey,
       child: Column(
         children: [
-          TextFormField(
-            decoration: InputDecoration(
-              hintText: 'joe'
-            ),
-            onChanged: (value) { _loginData['username'] = value; },
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              hintText: 'pass'
-            ),
-            keyboardType: TextInputType.text,
-            obscureText: true,
-            onChanged: (value) { _loginData['password'] = value; },
-          ),
-          FlatButton(
-            child: Text('Log in'),
-            color: Colors.blue,
-            onPressed: () {
-              Provider.of<AuthProvider>(context, listen: false).login(
-                _loginData
-              );
-            },
-          )
+          _buildUsernameField(),
+          _buildPasswordField(),
+          _buildSubmitButton()
         ]
       )
+    );
+  }
+
+  Widget _buildUsernameField() {
+    return TextFormField(
+      decoration: InputDecoration(
+        hintText: 'example: joe'
+      ),
+      onChanged: (value) { _loginData['username'] = value; },
+    );
+  }
+
+  Widget _buildPasswordField() {
+    return TextFormField(
+      decoration: InputDecoration(
+        hintText: 'example: pass'
+      ),
+      keyboardType: TextInputType.text,
+      obscureText: true,
+      onChanged: (value) { _loginData['password'] = value; },
+    );
+  }
+
+  Widget _buildSubmitButton() {
+    return FlatButton(
+      child: Text('Log in'),
+      color: Colors.blue,
+      onPressed: () {
+        Provider.of<AuthProvider>(context, listen: false).login(
+          _loginData
+        );
+      },
     );
   }
 }
