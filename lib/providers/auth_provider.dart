@@ -10,10 +10,10 @@ class AuthProvider with ChangeNotifier {
 
   bool get isAuthenticated => _accessToken != null;
 
-  dynamic login() async {
+  dynamic login(Map<String, String> loginData) async {
     final response = await http.post('http://127.0.0.1:3000/auth/login', body: {
-      'username': 'joe',
-      'password': 'pass'
+      'username': loginData['username'],
+      'password': loginData['password']
     });
     final parsedResponse = jsonDecode(response.body);
     if (parsedResponse['statusCode'] == 401) {
