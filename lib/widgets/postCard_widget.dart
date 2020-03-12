@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:liquivote/models/post_model.dart';
+import 'package:liquivote/providers/data_provider.dart';
+import 'package:provider/provider.dart';
 
 class PostCard extends StatelessWidget {
   final Post post;
@@ -19,7 +21,7 @@ class PostCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          _buildVotes(),
+          _buildVotes(context),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,7 +37,7 @@ class PostCard extends StatelessWidget {
     );
   }
 
-  _buildVotes () {
+  _buildVotes (BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -45,7 +47,13 @@ class PostCard extends StatelessWidget {
           child: FlatButton(
             padding: EdgeInsets.all(0),
             child: Icon(Icons.arrow_drop_up),
-            onPressed: () { print('+1'); },
+            onPressed: () {
+              Provider.of<DataProvider>(context, listen: false).saveVote(
+                post.currentUserVote,
+                true,
+                post.id
+              );
+            },
           ),
         ),
         Container(
@@ -65,7 +73,13 @@ class PostCard extends StatelessWidget {
           child: FlatButton(
             padding: EdgeInsets.all(0),
             child: Icon(Icons.arrow_drop_down),
-            onPressed: () { print('-1'); },
+            onPressed: () {
+              Provider.of<DataProvider>(context, listen: false).saveVote(
+                post.currentUserVote,
+                false,
+                post.id
+              );
+            },
           ),
         ),
       ]

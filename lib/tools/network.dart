@@ -27,9 +27,17 @@ class Network {
     );
   }
 
-  Future<dynamic> post(String url, {Map<String, String>headers, body, encoding}) {
+  Future<dynamic> post(String url, {Map<String, String>headers, body}) {
     return http
-      .post(url, body: body, headers: getHeaders(headers), encoding: encoding)
+      .post(url, body: body, headers: getHeaders(headers))
+      .then((http.Response response) {
+        return getFormattedResponse(response);
+      });
+  }
+
+  Future<dynamic> update(String url, {Map<String, String>headers, body}) {
+    return http
+      .put(url, body: body, headers: getHeaders(headers))
       .then((http.Response response) {
         return getFormattedResponse(response);
       });

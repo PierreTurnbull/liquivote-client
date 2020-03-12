@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:liquivote/models/post_model.dart';
+import 'package:liquivote/models/vote_model.dart';
 import 'package:liquivote/providers/auth_provider.dart';
 import 'package:liquivote/tools/network.dart';
 import 'package:provider/provider.dart';
@@ -22,5 +23,21 @@ class DataProvider with ChangeNotifier {
     _posts = response['body'].map<Post>((item) {
       return Post.fromObject(item);
     }).toList();
+  }
+
+  void createVote (vote) async {
+  }
+
+  void updateVote (vote) async {
+  }
+
+  void saveVote(vote, value, postId) async {
+    if (vote == null) {
+      final newVote = NewVote(value: value, postId: postId);
+      this.createVote(newVote);
+    } else {
+      vote.value = value;
+      this.updateVote(vote);
+    }
   }
 }

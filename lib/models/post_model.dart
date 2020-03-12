@@ -1,4 +1,5 @@
 import 'package:liquivote/models/user_model.dart';
+import 'package:liquivote/models/vote_model.dart';
 
 class Post {
   final int id;
@@ -9,6 +10,7 @@ class Post {
   final int votesCount;
   final int votesYesCount;
   final int votesNoCount;
+  final Vote currentUserVote;
 
   Post({
     this.id,
@@ -18,7 +20,8 @@ class Post {
     this.votesSum,
     this.votesCount,
     this.votesYesCount,
-    this.votesNoCount
+    this.votesNoCount,
+    this.currentUserVote
   });
 
   factory Post.fromObject(Map<String, dynamic> object) {
@@ -32,6 +35,7 @@ class Post {
       votesCount: object['votesCount'],
       votesYesCount: object['votesYesCount'],
       votesNoCount: object['votesNoCount'],
+      currentUserVote: Vote.fromObject(object['currentUserVote']),
     );
   }
 }
