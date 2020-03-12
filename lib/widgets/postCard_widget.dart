@@ -40,6 +40,15 @@ class PostCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
+          height: 30,
+          width: 50,
+          child: FlatButton(
+            padding: EdgeInsets.all(0),
+            child: Icon(Icons.arrow_drop_up),
+            onPressed: () { print('+1'); },
+          ),
+        ),
+        Container(
           width: 50,
           child: Text(
             post.votesSum.toString(),
@@ -50,14 +59,15 @@ class PostCard extends StatelessWidget {
             ),
           )
         ),
-        Text(
-          'pts',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 10,
-            color: Color.fromARGB(255, 70, 70, 70)
-          )
-        )
+        Container(
+          height: 30,
+          width: 50,
+          child: FlatButton(
+            padding: EdgeInsets.all(0),
+            child: Icon(Icons.arrow_drop_down),
+            onPressed: () { print('-1'); },
+          ),
+        ),
       ]
     );
   }
