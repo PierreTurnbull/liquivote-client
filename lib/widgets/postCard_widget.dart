@@ -17,25 +17,57 @@ class PostCard extends StatelessWidget {
         border: Border.all(width: 1, color: Color.fromARGB(255, 200, 200, 200)),
         borderRadius: BorderRadius.circular(4)
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
         children: [
-          _buildTitle(),
-          _buildContent(),
+          _buildVotes(),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildTitle(),
+                SizedBox(height: 15,),
+                _buildContent(),
+              ]
+            )
+          )
         ]
       )
     );
   }
 
-  _buildTitle () {
-    return Container(
-      margin: EdgeInsets.fromLTRB(0, 0, 0, 15),
-      child: Text(
-        post.title,
-        style: TextStyle(
-          fontSize: 20,
-          color: Color.fromARGB(255, 70, 70, 70)
+  _buildVotes () {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          width: 50,
+          child: Text(
+            post.votesSum.toString(),
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 24,
+              color: Color.fromARGB(255, 70, 70, 70)
+            ),
+          )
         ),
+        Text(
+          'pts',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 10,
+            color: Color.fromARGB(255, 70, 70, 70)
+          )
+        )
+      ]
+    );
+  }
+
+  _buildTitle () {
+    return Text(
+      post.title,
+      style: TextStyle(
+        fontSize: 20,
+        color: Color.fromARGB(255, 70, 70, 70)
       ),
     );
   }

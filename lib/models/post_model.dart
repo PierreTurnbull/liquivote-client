@@ -28,6 +28,10 @@ class Post {
       title: object['title'],
       content: object['content'],
       user: User.fromObject(object['user']),
+      votesSum: object['votesSum'],
+      votesCount: object['votesCount'],
+      votesYesCount: object['votesYesCount'],
+      votesNoCount: object['votesNoCount'],
     );
   }
 }
