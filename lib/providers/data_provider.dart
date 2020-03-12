@@ -26,9 +26,11 @@ class DataProvider with ChangeNotifier {
   }
 
   void createVote (vote) async {
+    await _network.post('http://127.0.0.1:3000/votes', body: vote.getObjectLitteral());
   }
 
   void updateVote (vote) async {
+    await _network.update('http://127.0.0.1:3000/votes/${vote.id}', body: vote);
   }
 
   void saveVote(vote, value, postId) async {

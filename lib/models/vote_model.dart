@@ -3,6 +3,13 @@ class NewVote {
   final int postId;
 
   NewVote({ this.value, this.postId });
+
+  Map<String, dynamic> getObjectLitteral() {
+    return {
+      'value': value.toString(),
+      'postId': postId.toString(),
+    };
+  }
 }
 
 class Vote {
@@ -17,5 +24,11 @@ class Vote {
       id: object['id'],
       value: object['value'],
     );
+  }
+
+  Map<String, dynamic> getObjectLitteral() {
+    return {
+      'value': value.toString(),
+    };
   }
 }
