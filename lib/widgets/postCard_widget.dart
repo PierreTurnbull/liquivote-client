@@ -38,51 +38,54 @@ class PostCard extends StatelessWidget {
   }
 
   _buildVotes (BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          height: 30,
-          width: 50,
-          child: FlatButton(
-            padding: EdgeInsets.all(0),
-            child: Icon(Icons.arrow_drop_up),
-            onPressed: () {
-              Provider.of<DataProvider>(context, listen: false).saveVote(
-                post.currentUserVote,
-                true,
-                post.id
-              );
-            },
-          ),
-        ),
-        Container(
-          width: 50,
-          child: Text(
-            post.votesSum.toString(),
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 24,
-              color: Color.fromARGB(255, 70, 70, 70)
+    return Container(
+      margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            height: 30,
+            width: 50,
+            child: FlatButton(
+              padding: EdgeInsets.all(0),
+              child: Icon(Icons.arrow_drop_up),
+              onPressed: () {
+                Provider.of<DataProvider>(context, listen: false).saveVote(
+                  post.currentUserVote,
+                  true,
+                  post.id
+                );
+              },
             ),
-          )
-        ),
-        Container(
-          height: 30,
-          width: 50,
-          child: FlatButton(
-            padding: EdgeInsets.all(0),
-            child: Icon(Icons.arrow_drop_down),
-            onPressed: () {
-              Provider.of<DataProvider>(context, listen: false).saveVote(
-                post.currentUserVote,
-                false,
-                post.id
-              );
-            },
           ),
-        ),
-      ]
+          Container(
+            width: 50,
+            child: Text(
+              post.votesSum.toString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 24,
+                color: Color.fromARGB(255, 70, 70, 70)
+              ),
+            )
+          ),
+          Container(
+            height: 30,
+            width: 50,
+            child: FlatButton(
+              padding: EdgeInsets.all(0),
+              child: Icon(Icons.arrow_drop_down),
+              onPressed: () {
+                Provider.of<DataProvider>(context, listen: false).saveVote(
+                  post.currentUserVote,
+                  false,
+                  post.id
+                );
+              },
+            ),
+          ),
+        ]
+      )
     );
   }
 
