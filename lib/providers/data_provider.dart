@@ -17,7 +17,7 @@ class DataProvider with ChangeNotifier {
   void fetchPosts() async {
     final response = await _network.get('http://127.0.0.1:3000/posts');
     if (response['statusCode'] == 401) {
-      Provider.of<AuthProvider>(context).logout();
+      Provider.of<AuthProvider>(context, listen: false).logout();
     }
     _posts = response['body'].map<Post>((item) {
       return Post.fromObject(item);

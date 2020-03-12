@@ -1,19 +1,25 @@
+import 'package:liquivote/models/user_model.dart';
+
 class Post {
   final int id;
   final String title;
   final String content;
-  final int userId;
+  final User user;
+  final int votesSum;
+  final int votesCount;
+  final int votesYesCount;
+  final int votesNoCount;
 
-  Post({ this.id, this.title, this.content, this.userId });
-
-  factory Post.init(int userId) {
-    return Post(
-      id: null,
-      title: '',
-      content: '',
-      userId: userId,
-    );
-  }
+  Post({
+    this.id,
+    this.title,
+    this.content,
+    this.user,
+    this.votesSum,
+    this.votesCount,
+    this.votesYesCount,
+    this.votesNoCount
+  });
 
   factory Post.fromObject(Map<String, dynamic> object) {
     if (object == null) { return null; }
@@ -21,16 +27,7 @@ class Post {
       id: object['id'],
       title: object['title'],
       content: object['content'],
-      userId: object['userId'],
+      user: User.fromObject(object['user']),
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'title': title,
-      'content': content,
-      'userId': userId,
-    };
   }
 }
