@@ -1,14 +1,16 @@
+import 'dart:convert';
+
 class NewVote {
   final bool value;
   final int postId;
 
   NewVote({ this.value, this.postId });
 
-  Map<String, dynamic> getObjectLitteral() {
-    return {
+  String getJSON() {
+    return jsonEncode({
       'value': value.toString(),
       'postId': postId.toString(),
-    };
+    });
   }
 }
 
@@ -26,9 +28,9 @@ class Vote {
     );
   }
 
-  Map<String, dynamic> getObjectLitteral() {
-    return {
-      'value': value.toString(),
-    };
+  String getJSON() {
+    return jsonEncode({
+      'value': value,
+    });
   }
 }

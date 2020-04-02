@@ -27,15 +27,15 @@ class DataProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void createVote (vote) async {
-    await _network.post('http://127.0.0.1:3000/votes', body: vote.getObjectLitteral());
+  void createVote (NewVote vote) async {
+    await _network.post('http://127.0.0.1:3000/votes', body: vote.getJSON());
   }
 
-  void updateVote (vote) async {
-    await _network.update('http://127.0.0.1:3000/votes/${vote.id}', body: vote);
+  void updateVote (Vote vote) async {
+    await _network.update('http://127.0.0.1:3000/votes/${vote.id}', body: vote.getJSON());
   }
 
-  void saveVote(vote, ArrowValue arrowValue, postId) async {
+  void saveVote(Vote vote, ArrowValue arrowValue, postId) async {
     bool requestValue;
     if (arrowValue == ArrowValue.MORE) { requestValue = true; }
     if (arrowValue == ArrowValue.LESS) { requestValue = false; }
@@ -46,5 +46,6 @@ class DataProvider with ChangeNotifier {
       vote.value = requestValue;
       this.updateVote(vote);
     }
+    notifyListeners();
   }
 }

@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 class Network {
   // next three lines makes this class a Singleton
   static Network _instance = new Network.internal();
-  Network.internal();
+  Network.internal() : this._headers = { 'Content-Type': 'application/json' };
   factory Network() => _instance;
 
   Map<String, String> _headers = {};
@@ -18,7 +18,7 @@ class Network {
     };
   }
 
-  Future<dynamic> get(String url, {Map<String, String>headers}) {
+  Future<dynamic> get(String url, { Map<String, String>headers }) {
     return http
       .get(url, headers: getHeaders(headers))
       .then((http.Response response) {
@@ -27,7 +27,7 @@ class Network {
     );
   }
 
-  Future<dynamic> post(String url, {Map<String, String>headers, body}) {
+  Future<dynamic> post(String url, { Map<String, String>headers, String body }) {
     return http
       .post(url, body: body, headers: getHeaders(headers))
       .then((http.Response response) {
@@ -35,7 +35,7 @@ class Network {
       });
   }
 
-  Future<dynamic> update(String url, {Map<String, String>headers, body}) {
+  Future<dynamic> update(String url, { Map<String, String>headers, String body }) {
     return http
       .put(url, body: body, headers: getHeaders(headers))
       .then((http.Response response) {
