@@ -21,9 +21,9 @@ class DataProvider with ChangeNotifier {
     if (response['statusCode'] == 401) {
       Provider.of<AuthProvider>(context, listen: false).logout();
     }
-    _posts = response['body'].map<Post>((item) {
-      return Post.fromObject(item);
-    }).toList();
+    _posts = response['body']
+      ?.map<Post>((item) => Post.fromObject(item))
+      ?.toList();
     notifyListeners();
   }
 
@@ -46,6 +46,5 @@ class DataProvider with ChangeNotifier {
       vote.value = requestValue;
       this.updateVote(vote);
     }
-    notifyListeners();
   }
 }

@@ -8,8 +8,8 @@ class NewVote {
 
   String getJSON() {
     return jsonEncode({
-      'value': value.toString(),
-      'postId': postId.toString(),
+      'value': value,
+      'postId': postId,
     });
   }
 }

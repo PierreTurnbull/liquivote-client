@@ -54,15 +54,22 @@ class PostCard extends StatelessWidget {
 
   _buildVotesArrow (context, ArrowValue arrowValue) {
     IconData iconData;
+    Color iconColor;
     if (arrowValue == ArrowValue.LESS) { iconData = Icons.arrow_drop_down; }
     if (arrowValue == ArrowValue.MORE) { iconData = Icons.arrow_drop_up; }
+    if (post.currentUserVote?.value == true && arrowValue == ArrowValue.MORE) {
+      iconColor = Colors.blue;
+    }
+    if (post.currentUserVote?.value == false && arrowValue == ArrowValue.LESS) {
+      iconColor = Colors.blue;
+    }
 
     return Container(
       height: 30,
       width: 50,
       child: FlatButton(
         padding: EdgeInsets.all(0),
-        child: Icon(iconData),
+        child: Icon(iconData, color: iconColor),
         onPressed: () {
           Provider.of<DataProvider>(context, listen: false).saveVote(
             post.currentUserVote,
@@ -75,6 +82,9 @@ class PostCard extends StatelessWidget {
   }
 
   _buildVotesValue () {
+    Color textColor;
+    if (post.currentUserVote != null) { textColor = Colors.blue; }
+
     return Container(
       width: 50,
       child: Text(
@@ -82,7 +92,7 @@ class PostCard extends StatelessWidget {
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 24,
-          color: Color.fromARGB(255, 70, 70, 70)
+          color: textColor ?? Color.fromARGB(255, 70, 70, 70)
         ),
       )
     );
