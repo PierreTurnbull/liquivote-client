@@ -46,5 +46,10 @@ class DataProvider with ChangeNotifier {
       vote.value = requestValue;
       this.updateVote(vote);
     }
+    sortPosts();
+  }
+
+  void sortPosts() {
+    _posts.sort((a, b) => a.votesCount - b.votesCount);
   }
 }

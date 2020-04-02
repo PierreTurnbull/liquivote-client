@@ -28,7 +28,9 @@ class PostCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildTitle(),
-                SizedBox(height: 15,),
+                SizedBox(height: 4,),
+                _buildVotesCount(),
+                SizedBox(height: 16,),
                 _buildContent(),
               ]
             )
@@ -105,6 +107,16 @@ class PostCard extends StatelessWidget {
         fontSize: 20,
         color: Color.fromARGB(255, 70, 70, 70)
       ),
+    );
+  }
+
+  _buildVotesCount () {
+    return Text(
+      post.votesCount.toString() + ' votes',
+      style: TextStyle(
+        fontSize: 12,
+        color: Color.fromARGB(255, 70, 70, 70)
+      )
     );
   }
 
