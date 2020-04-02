@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:liquivote/models/post_model.dart';
 import 'package:liquivote/providers/data_provider.dart';
+import 'package:liquivote/tools/enums.dart';
 import 'package:provider/provider.dart';
 
 class PostCard extends StatelessWidget {
@@ -43,48 +44,46 @@ class PostCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            height: 30,
-            width: 50,
-            child: FlatButton(
-              padding: EdgeInsets.all(0),
-              child: Icon(Icons.arrow_drop_up),
-              onPressed: () {
-                Provider.of<DataProvider>(context, listen: false).saveVote(
-                  post.currentUserVote,
-                  true,
-                  post.id
-                );
-              },
-            ),
-          ),
-          Container(
-            width: 50,
-            child: Text(
-              post.votesSum.toString(),
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 24,
-                color: Color.fromARGB(255, 70, 70, 70)
-              ),
-            )
-          ),
-          Container(
-            height: 30,
-            width: 50,
-            child: FlatButton(
-              padding: EdgeInsets.all(0),
-              child: Icon(Icons.arrow_drop_down),
-              onPressed: () {
-                Provider.of<DataProvider>(context, listen: false).saveVote(
-                  post.currentUserVote,
-                  false,
-                  post.id
-                );
-              },
-            ),
-          ),
+          _buildVotesArrow(context, ArrowValue.MORE),
+          _buildVotesValue(),
+          _buildVotesArrow(context, ArrowValue.LESS)
         ]
+      )
+    );
+  }
+
+  _buildVotesArrow (context, ArrowValue arrowValue) {
+    IconData iconData;
+    if (arrowValue == ArrowValue.LESS) { iconData = Icons.arrow_drop_down; }
+    if (arrowValue == ArrowValue.MORE) { iconData = Icons.arrow_drop_up; }
+
+    return Container(
+      height: 30,
+      width: 50,
+      child: FlatButton(
+        padding: EdgeInsets.all(0),
+        child: Icon(iconData),
+        onPressed: () {
+          Provider.of<DataProvider>(context, listen: false).saveVote(
+            post.currentUserVote,
+            arrowValue,
+            post.id
+          );
+        },
+      ),
+    );
+  }
+
+  _buildVotesValue () {
+    return Container(
+      width: 50,
+      child: Text(
+        post.votesSum.toString(),
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 24,
+          color: Color.fromARGB(255, 70, 70, 70)
+        ),
       )
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:liquivote/models/post_model.dart';
 import 'package:liquivote/models/vote_model.dart';
 import 'package:liquivote/providers/auth_provider.dart';
+import 'package:liquivote/tools/enums.dart';
 import 'package:liquivote/tools/network.dart';
 import 'package:provider/provider.dart';
 
@@ -34,12 +35,15 @@ class DataProvider with ChangeNotifier {
     await _network.update('http://127.0.0.1:3000/votes/${vote.id}', body: vote);
   }
 
-  void saveVote(vote, value, postId) async {
+  void saveVote(vote, ArrowValue arrowValue, postId) async {
+    bool requestValue;
+    if (arrowValue == ArrowValue.MORE) { requestValue = true; }
+    if (arrowValue == ArrowValue.LESS) { requestValue = false; }
     if (vote == null) {
-      final newVote = NewVote(value: value, postId: postId);
+      final newVote = NewVote(value: requestValue, postId: postId);
       this.createVote(newVote);
     } else {
-      vote.value = value;
+      vote.value = requestValue;
       this.updateVote(vote);
     }
   }
