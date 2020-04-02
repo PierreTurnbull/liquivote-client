@@ -7,7 +7,7 @@ class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.all(12),
       child: Column(
         children: Provider.of<DataProvider>(context).posts.map((post) {
           return PostCard(post);

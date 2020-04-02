@@ -7,6 +7,15 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Provider.of<DataProvider>(context).fetchPosts();
-    return HomeBody();
+    return Consumer<DataProvider>(
+      builder: (ctx, dataProvider, _) => dataProvider.posts.length > 0
+        ? HomeBody()
+        : FutureBuilder(
+          future: dataProvider.fetchPosts(),
+          builder: (ctx, authResultSnapshot) => authResultSnapshot.connectionState == ConnectionState.waiting
+            ? Text('loading...')
+            : Text('There\'s nothing!')
+        )
+    );
   }
 }

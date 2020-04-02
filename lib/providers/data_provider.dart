@@ -11,11 +11,11 @@ class DataProvider with ChangeNotifier {
 
   List<Post> _posts;
 
-  List<Post> get posts => [..._posts];
+  List<Post> get posts => _posts == null ? [] : _posts;
 
-  DataProvider(this.context);
+  DataProvider(this.context) : _posts = [];
 
-  void fetchPosts() async {
+  Future<void> fetchPosts() async {
     final response = await _network.get('http://127.0.0.1:3000/posts');
     if (response['statusCode'] == 401) {
       Provider.of<AuthProvider>(context, listen: false).logout();
@@ -23,6 +23,7 @@ class DataProvider with ChangeNotifier {
     _posts = response['body'].map<Post>((item) {
       return Post.fromObject(item);
     }).toList();
+    notifyListeners();
   }
 
   void createVote (vote) async {
