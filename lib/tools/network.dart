@@ -14,7 +14,7 @@ class Network {
   dynamic getFormattedResponse(dynamic response) {
     return {
       'statusCode': response.statusCode,
-      'body': jsonDecode(response.body)
+      'body': response.body != '' ? jsonDecode(response.body) : null
     };
   }
 
@@ -38,6 +38,14 @@ class Network {
   Future<dynamic> update(String url, { Map<String, String>headers, String body }) {
     return http
       .put(url, body: body, headers: getHeaders(headers))
+      .then((http.Response response) {
+        return getFormattedResponse(response);
+      });
+  }
+
+  Future<dynamic> delete(String url, { Map<String, String>headers, String body }) {
+    return http
+      .delete(url, headers: getHeaders(headers))
       .then((http.Response response) {
         return getFormattedResponse(response);
       });

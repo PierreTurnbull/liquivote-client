@@ -10,7 +10,7 @@ class Post {
   final int votesCount;
   final int votesYesCount;
   final int votesNoCount;
-  final Vote currentUserVote;
+  Vote currentUserVote;
 
   Post({
     this.id,
