@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:liquivote/models/post_model.dart';
+import 'package:liquivote/providers/auth_provider.dart';
 import 'package:liquivote/providers/data_provider.dart';
 import 'package:liquivote/tools/enums.dart';
 import 'package:provider/provider.dart';
+import 'package:tinycolor/tinycolor.dart';
 
 class PostCard extends StatelessWidget {
   final Post post;
@@ -11,13 +13,14 @@ class PostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isMine = post.user.id == Provider.of<AuthProvider>(context).currentUserId;
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(16),
       margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 255, 255, 255),
-        border: Border.all(width: 1, color: Color.fromARGB(255, 200, 200, 200)),
+        color: isMine ? TinyColor(Colors.blue).lighten(40).color : Color.fromARGB(255, 255, 255, 255),
+        border: Border.all(width: 1, color: isMine ? Colors.blue : Color.fromARGB(255, 200, 200, 200)),
         borderRadius: BorderRadius.circular(4)
       ),
       child: Row(
