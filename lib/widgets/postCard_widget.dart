@@ -25,18 +25,7 @@ class PostCard extends StatelessWidget {
       child: Row(
         children: [
           _buildVotes(context),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildTitle(),
-                SizedBox(height: 4,),
-                _buildVotesCount(),
-                SizedBox(height: 16,),
-                _buildContent(),
-              ]
-            )
-          )
+          _buildContent(),
         ]
       )
     );
@@ -51,6 +40,21 @@ class PostCard extends StatelessWidget {
           _buildVotesArrow(context, ArrowValue.MORE),
           _buildVotesValue(),
           _buildVotesArrow(context, ArrowValue.LESS)
+        ]
+      )
+    );
+  }
+
+  Widget _buildContent () {
+    return Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildTitle(),
+          SizedBox(height: 4,),
+          _buildVotesCount(),
+          SizedBox(height: 16,),
+          _buildDescription(),
         ]
       )
     );
@@ -122,7 +126,7 @@ class PostCard extends StatelessWidget {
     );
   }
 
-  _buildContent () {
+  _buildDescription () {
     return Text(
       post.content,
       style: TextStyle(
